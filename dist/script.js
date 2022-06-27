@@ -954,8 +954,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var modal = function modal() {
+  var opened = false;
+
   var bindModal = function bindModal(triggerSelector, modalSelector, closeSelector) {
-    var closeByOverlay = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+    var destroyTrigger = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
     var modal = document.querySelector(modalSelector);
     var openBtns = document.querySelectorAll(triggerSelector);
     var closeBtns = document.querySelectorAll(closeSelector);
@@ -966,16 +968,27 @@ var modal = function modal() {
       modal.style.display = 'block';
       document.body.style.overflowY = 'hidden';
       document.body.style.marginRight = "".concat(scroll, "px");
+
+      if (destroyTrigger) {
+        openBtns.forEach(function (btn) {
+          btn.remove();
+        });
+      }
+
+      opened = true;
     };
 
-    var closeModal = function closeModal() {
+    var closeModal = function closeModal(modal) {
       modal.style.display = 'none';
       document.body.style.overflowY = 'auto';
       document.body.style.marginRight = "0px";
     };
 
     var closeModals = function closeModals() {
-      document.querySelectorAll('[data-modal]').forEach(closeModal);
+      document.querySelectorAll('[data-modal]').forEach(function (item) {
+        item.classList.add('animate__animated', 'animate__fadeIn');
+        closeModal(item);
+      });
     };
 
     openBtns.forEach(function (btn) {
@@ -986,14 +999,14 @@ var modal = function modal() {
     });
     closeBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        closeModal();
+        closeModal(modal);
       });
     });
     modal.addEventListener('click', function (e) {
       var target = e.target;
 
       if (target && target.matches(modalSelector)) {
-        closeModal();
+        closeModal(modal);
       }
     });
   };
@@ -1029,9 +1042,22 @@ var modal = function modal() {
     }, time);
   };
 
+  function openModalByScroll(selector) {
+    window.addEventListener('scroll', function () {
+      var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      console.log(scrollHeight);
+
+      if (!opened && window.scrollY + document.documentElement.clientHeight >= scrollHeight - 10) {
+        document.querySelector(selector).click();
+      }
+    });
+  }
+
   bindModal('.button-design', '.popup-design', '.popup-close');
   bindModal('.button-consultation', '.popup-consultation', '.popup-close');
-  openModalByTime('.popup-consultation', 5000);
+  bindModal('.fixed-gift', '.popup-gift', '.popup-close', true); // openModalByTime('.popup-consultation', 5000);
+
+  openModalByScroll('.fixed-gift');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
