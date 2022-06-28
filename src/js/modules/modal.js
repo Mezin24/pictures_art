@@ -100,7 +100,6 @@ const modal = () => {
         document.documentElement.scrollHeight,
         document.body.scrollHeight
       );
-      console.log(scrollHeight);
       if (
         !opened &&
         window.scrollY + document.documentElement.clientHeight >=
