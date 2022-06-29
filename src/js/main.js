@@ -1,6 +1,8 @@
 import modal from './modules/modal';
 import slider from './modules/sliders';
 import forms from './modules/forms';
+import checkTextInput from './modules/checkTextInput';
+import mask from './modules/mask';
 
 window.addEventListener('DOMContentLoaded', () => {
   'use strict';
@@ -14,4 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
   );
   slider('.main-slider-item', 'vertical');
   forms();
+  mask('[name="phone"]');
+  checkTextInput('[name="name"]');
+  checkTextInput('[name="message"]');
 });
