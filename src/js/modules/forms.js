@@ -1,6 +1,6 @@
 import { postData } from '../services/requests';
 
-const forms = () => {
+const forms = (state) => {
   const forms = document.querySelectorAll('form');
   const fileInputs = document.querySelectorAll('[type="file"]');
 
@@ -59,6 +59,14 @@ const forms = () => {
       }, 400);
 
       const formData = new FormData(item);
+
+      if (item.getAttribute('data-calc') === 'end') {
+        for (let prop in state) {
+          formData.append(prop, state[prop]);
+          console.log(`${prop}: ${state[prop]}`);
+        }
+      }
+
       const api = item.classList.contains('form-calc')
         ? path.designer
         : path.question;
@@ -78,6 +86,10 @@ const forms = () => {
           document.querySelectorAll('[type="file"]').forEach((item) => {
             item.previousElementSibling.textContent = 'Фаил не выбран';
           });
+          if (item.getAttribute('data-calc') === 'end') {
+            item.querySelector('.calc-price').textContent =
+              'Для расчета нужно выбрать размер картины и материал картины';
+          }
           setTimeout(() => {
             statusMessage.remove();
             item.style.display = 'block';
