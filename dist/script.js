@@ -4409,6 +4409,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/showMoreStyles */ "./src/js/modules/showMoreStyles.js");
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
+/* harmony import */ var _modules_sizes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/sizes */ "./src/js/modules/sizes.js");
+
 
 
 
@@ -4431,6 +4433,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_showMoreStyles__WEBPACK_IMPORTED_MODULE_5__["default"])('.button-styles', '#styles .row');
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', formState);
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_modules_sizes__WEBPACK_IMPORTED_MODULE_8__["default"])();
 });
 
 /***/ }),
@@ -4941,6 +4944,64 @@ var showMoreStyles = function showMoreStyles(trigger, wrapper) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (showMoreStyles);
+
+/***/ }),
+
+/***/ "./src/js/modules/sizes.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/sizes.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.slice */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_slice__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.split */ "./node_modules/core-js/modules/es.string.split.js");
+/* harmony import */ var core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var sizes = function sizes() {
+  var sizesBlocks = document.querySelectorAll('.sizes-block');
+
+  function showPicture(e) {
+    var target = e.target;
+    var img = target.querySelector('img');
+    var src = img.getAttribute('src');
+    var newSrc = src.split('.')[0] + '-1.' + src.split('.')[1];
+    img.setAttribute('src', newSrc);
+    img.classList.add('animate__animated', 'animate__fadeIn');
+    target.children.forEach(function (item) {
+      if (item.tagName !== 'IMG' && !item.classList.contains('sizes-hit')) {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function hidePicture(e) {
+    var target = e.target;
+    var img = target.querySelector('img');
+    var src = img.getAttribute('src');
+    var newSrc = src.split('.')[0].slice(0, -2) + '.' + src.split('.')[1];
+    img.setAttribute('src', newSrc);
+    img.classList.remove('animate__animated', 'animate__fadeIn');
+    target.children.forEach(function (item) {
+      item.style.display = 'block';
+    });
+  }
+
+  sizesBlocks.forEach(function (item) {
+    item.addEventListener('mouseenter', showPicture);
+    item.addEventListener('mouseleave', hidePicture);
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (sizes);
 
 /***/ }),
 

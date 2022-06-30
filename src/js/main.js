@@ -6,6 +6,7 @@ import mask from './modules/mask';
 import showMoreStyles from './modules/showMoreStyles';
 import calc from './modules/calc';
 import filter from './modules/filter';
+import sizes from './modules/sizes';
 
 window.addEventListener('DOMContentLoaded', () => {
   'use strict';
@@ -35,4 +36,5 @@ window.addEventListener('DOMContentLoaded', () => {
   );
 
   filter();
+  sizes();
 });
