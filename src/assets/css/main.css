@@ -903,9 +903,8 @@ h4 {
 }
 .often-questions .accordion-heading.active-style span {
   border-bottom: none;
-  color:rgba(178, 80, 188, 0.8);
+  color: rgba(178, 80, 188, 0.8);
   font-weight: bold;
-  
 }
 
 .often-questions .accordion-heading span {
@@ -915,7 +914,6 @@ h4 {
   max-height: 0;
   overflow: hidden;
   transition: all 0.3 ease-in;
-  
 }
 .often-questions .accordion-block.active-block {
   margin-top: 1rem;
@@ -1275,6 +1273,21 @@ h4 {
 .status {
   text-align: center;
 }
+
+.pageup {
+  opacity: 0;
+  width: 26px;
+  height: 26px;
+  position: fixed;
+  bottom: 100px;
+  right: 5%;
+  z-index: 30;
+  background-color: #fff;
+  cursor: pointer;
+  border: 1px solid white;
+  transition: 1s all;
+}
+
 @media (max-width: 1399px) {
   .paints {
     display: none;
