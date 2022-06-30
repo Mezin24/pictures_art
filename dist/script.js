@@ -4410,6 +4410,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/calc */ "./src/js/modules/calc.js");
 /* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/filter */ "./src/js/modules/filter.js");
 /* harmony import */ var _modules_sizes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/sizes */ "./src/js/modules/sizes.js");
+/* harmony import */ var _modules_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/accordion */ "./src/js/modules/accordion.js");
+
 
 
 
@@ -4434,7 +4436,58 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_6__["default"])('#size', '#material', '#options', '.promocode', '.calc-price', formState);
   Object(_modules_filter__WEBPACK_IMPORTED_MODULE_7__["default"])();
   Object(_modules_sizes__WEBPACK_IMPORTED_MODULE_8__["default"])();
+  Object(_modules_accordion__WEBPACK_IMPORTED_MODULE_9__["default"])('.accordion-heading', '.accordion-block');
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/accordion.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/accordion.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var accordion = function accordion(triggerSelector, blockSelector) {
+  var btns = document.querySelectorAll(triggerSelector);
+  var blocks = document.querySelectorAll(blockSelector);
+
+  function hideBlock(block) {
+    block.classList.remove('animate__animated', 'animate__fadeInDown', 'active-block');
+    block.style.maxHeight = '0';
+  }
+
+  btns.forEach(function (item) {
+    item.addEventListener('click', function () {
+      var _this = this;
+
+      this.classList.toggle('active-style');
+
+      if (this.classList.contains('active-style')) {
+        blocks.forEach(function (item) {
+          hideBlock(item);
+        });
+        btns.forEach(function (btn) {
+          if (btn !== _this) {
+            btn.classList.remove('active-style');
+          }
+        });
+        this.nextElementSibling.classList.add('animate__animated', 'animate__fadeInDown', 'active-block');
+        this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 80 + 'px';
+      } else {
+        hideBlock(this.nextElementSibling);
+      }
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (accordion);
 
 /***/ }),
 
