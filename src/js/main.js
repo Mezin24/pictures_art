@@ -5,6 +5,7 @@ import checkTextInput from './modules/checkTextInput';
 import mask from './modules/mask';
 import showMoreStyles from './modules/showMoreStyles';
 import calc from './modules/calc';
+import filter from './modules/filter';
 
 window.addEventListener('DOMContentLoaded', () => {
   'use strict';
@@ -32,4 +33,6 @@ window.addEventListener('DOMContentLoaded', () => {
     '.calc-price',
     formState
   );
+
+  filter();
 });
