@@ -29,12 +29,6 @@ const forms = (state) => {
     }),
   ]);
 
-  function clearInputs() {
-    document.querySelectorAll('input').forEach((item) => {
-      item.value = '';
-    });
-  }
-
   forms.forEach((item) => {
     item.addEventListener('submit', (e) => {
       e.preventDefault();
